@@ -1,4 +1,4 @@
-# EFW Calculator menggunakan Integral
+# EFW Counter menggunakan Integral
 
 <p>Repository ini berisi sebuah program sederhana untuk menghitung Estimated Fetal Weight (EFW) menggunakan metode integral dalam bahasa pemrograman Python. 
   EFW adalah perkiraan berat janin dalam kandungan dan penting untuk memantau perkembangan janin selama kehamilan.</p>
