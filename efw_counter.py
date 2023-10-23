@@ -7,7 +7,7 @@ from tkinter import messagebox
 grid_size = 49  # Definisikan ukuran grid
 
 # Inisialisasi koordinat kepala, kaki, dan titik ketiga
-x1, y1, z1, x2, y2, z2 = None, None, None, None, None, None
+x1, y1, x2, y2 = None, None, None, None
 
 def set_background():
     global x1, y1, x2, y2
@@ -65,17 +65,16 @@ def mark_coordinate(event):
     y = y + scroll_pos[0] * total_height
 
     y_grid = (background_canvas.winfo_height() - y) / grid_size + 1.1
-
     if x1 is None:
-        x1, y1, z1 = x_grid, y_grid, 0
+        x1, y1 = x_grid, y_grid
         background_canvas.create_oval(x - 2, y - 2, x + 2, y + 2, fill='white', outline='white')
     elif x2 is None:
-        x2, y2, z2 = x_grid, y_grid, 0
+        x2, y2 = x_grid, y_grid
         background_canvas.create_oval(x - 2, y - 2, x + 2, y + 2, fill='yellow', outline='yellow')
 
 def show_marked_coordinates():
     if x1 is not None and x2 is not None:
-        coordinates_text = f"Titik 1 (x1, y1, z1): ({x1}, {y1}, {z1})\nTitik 2 (x2, y2, z2): ({x2}, {y2}, {z2})"
+        coordinates_text = f"Titik 1 (x1, y1): ({x1}, {y1})\nTitik 2 (x2, y2): ({x2}, {y2})"
         
         # Create a new Toplevel window
         dialog = tk.Toplevel(root)
@@ -96,6 +95,7 @@ def reset_coordinates():
     x1, y1, x2, y2 = None, None, None, None
     background_canvas.delete('all')
     messagebox.showinfo("Reset", "Program telah direset")
+    
 
 def calculate_volume_integral():
     if x1 is not None and x2 is not None:
@@ -122,7 +122,7 @@ def calculate_volume_integral():
         integral_result, _ = quad(berat, a, b)
         import math
         integral_result = math.pi * integral_result  # Berat dalam cm^3
-
+    
         result_text = f"Berat Bayi: {integral_result:.2f} gram\nJarak antara kepala dan kaki: {panjangBayi:.2f} cm\nDiameter Kepala: {diameterKepala:.2f} cm"
 
         # Menampilkan pop up hasil perhitungan
@@ -131,7 +131,7 @@ def calculate_volume_integral():
         messagebox.showerror("Kesalahan", "Diperlukan setidaknya dua koordinat (x1, y1, x2, y2) dan diameter untuk menghitung berat bayi berdasarkan fungsi.")
 
 root = tk.Tk()
-root.title("Image Background Window")
+root.title("Program Perhitungan Estimasi Berat Janin")
 
 bg_button = tk.Button(root, text="Upload Gambar", command=set_background)
 bg_button.grid(row=0, column=3)
