@@ -5,7 +5,6 @@ from scipy.integrate import quad
 from tkinter import messagebox
 
 grid_size = 49  # Definisikan ukuran grid
-satuan = "gram"  # Satuan berat
 
 # Inisialisasi koordinat kepala, kaki, dan titik ketiga
 x1, y1, z1, x2, y2, z2 = None, None, None, None, None, None
@@ -93,10 +92,10 @@ def show_marked_coordinates():
         messagebox.showwarning("Warning", "No coordinates marked")
 
 def reset_coordinates():
-    global x1, y1, x2, y2, x3, y3
-    x1, y1, x2, y2, x3, y3 = None, None, None, None, None, None
-    messagebox.showinfo("Reset", "Program telah direset")
+    global x1, y1, x2, y2
+    x1, y1, x2, y2 = None, None, None, None
     background_canvas.delete('all')
+    messagebox.showinfo("Reset", "Program telah direset")
 
 def calculate_volume_integral():
     if x1 is not None and x2 is not None:
